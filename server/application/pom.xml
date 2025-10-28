@@ -8,7 +8,11 @@
 	</parent>
 	<artifactId>server-application</artifactId>
 	<name>server.app</name>
-
+<properties>
+    <java.version>21</java.version> <!-- или 21 -->
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

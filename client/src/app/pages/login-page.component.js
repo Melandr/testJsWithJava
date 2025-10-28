@@ -1,10 +1,6 @@
 import { WFMComponent, ioc, router, $, _, validateField, http, jwt } from "framework";
-import { secret_key, api_url, auth_url, detail_url, proxy_url } from "../config.js";
+import { secret_key, api_url, auth_url, detail_url, base_url, client_url } from "../config.js";
 
-import { registerProviders } from "../../framework/core/providers/register-providers.js";
-import { APP_TITLE_TOKEN } from "../services/contracts";
-import ExampleServiceProvider from "../services/example.service-provider";
-import { ExampleService } from "../services/example.service";
 import DataServiceProvider from "../services/data.service-provider";
 import { DataService } from "../services/data.service";
 
@@ -60,22 +56,24 @@ class LoginPageComponent extends WFMComponent {
             };
 
             this.getTokenData(formData)
+                .then((token) => {
+                    _.saveToken(token);
+                })
+                .then(this.getUserName)
                 .then((data) => {
                     dataService.setMessage(data);
                     router.setRoute("/info");
                 })
                 .catch((data) => {
-                    dataService.setError(data);
-                    router.setRoute("/info");
+                    dataService.setMessage(data);
+                    router.setRoute("/error");
                 });
         } catch (err) {
             console.log(err);
         }
     }
 
-    clearContainerIOC() {
-
-    }
+    clearContainerIOC() {}
 
     //функция валидации формы
     validation(domObject, typeDomObject, minlength) {
@@ -123,49 +121,50 @@ class LoginPageComponent extends WFMComponent {
         $(target).removeClass("active");
     }
 
+    // const token = await getTokenData();
+    // if ( token ) {
+    //  const userName =  await getUserName();
+    // }
+
     //функция получения токена авторизации
     getTokenData(response) {
-        const url = proxy_url + auth_url;
+        const url = base_url + client_url + auth_url;
 
         const result = http
             .post(url, response)
             .then((response) => response.json())
             .then((data) => {
-                _.saveToken(data.token);
-
                 return Promise.resolve(data.token);
             })
             .catch((error) => {
-                // console.log(error);
                 return Promise.reject(error);
-                //тут нужно вывести текст ошибки
             });
 
         return result;
     }
 
-    //Функция получения детальной информации о пользователе
-    getUserDetailInfo(sucess) {
-        const url = proxy_url + detail_url;
+    //Функция вывода имени пользователя при удачной авторизации
+    getUserName() {
+        const url = base_url + client_url + detail_url;
 
-        const options = {
-            method: "GET",
-            headers: {
-                tmst: jwt._formatDate(),
-                token: _.getToken(),
-                sign: jwt.createSign(api_url + detail_url, _.getToken(), secret_key),
-            },
-        };
+        const headers = new Headers();
+        headers.append("tmst", jwt._formatDate());
+        headers.append("token", _.getToken());
+        headers.append("sign", jwt.createSign(api_url + client_url + detail_url, _.getToken(), secret_key));
 
-        return fetch(url, options).then((response) => {
-            if (response.status === 200) {
-                return response.json().then((request) => {
-                    console.log(response);
-                    const name = request.name;
-                    sucess(name);
-                });
-            }
-        });
+        const result = http
+            .get(url, headers)
+            .then((response) => {
+                if (response.status === 200) return response.json();
+            })
+            .then((data) => {
+                return Promise.resolve(data.name);
+            })
+            .catch((error) => {
+                return Promise.reject(error);
+            });
+
+        return result;
     }
 }
 
