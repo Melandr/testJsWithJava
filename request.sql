@@ -1,19 +1,19 @@
 INSERT INTO PUBLIC.USERS
 (LOGIN, PASSWORD, FIRST_NAME, LAST_NAME, MIDDLE_NAME)
-VALUES('admin_5', '12345', 'å•´Ï≠®Á•≠™Æ', 'Ä≠§‡•©', 'Ç†´•‡®•¢®Á');
+VALUES('admin_5', '12345', '–ú–µ–ª—å–Ω–∏—á–µ–Ω–∫–æ', '–ê–Ω–¥—Ä–µ–π', '–í–∞–ª–µ—Ä–∏–µ–≤–∏—á');
 
 INSERT INTO PUBLIC.USERS
 (LOGIN, PASSWORD, FIRST_NAME, LAST_NAME, MIDDLE_NAME)
-VALUES('admin_7', 'hardcore_pass', 'Ä°§„‡†Â¨†≠', 'à°≠', 'ïÆ‚‚†°');
+VALUES('admin_7', 'hardcore_pass', '–ê–±–¥—É—Ä–∞—Ö–º–∞–Ω', '–ò–±–Ω', '–•–æ—Ç—Ç–∞–±');
 
 INSERT INTO PUBLIC.USERS
 (LOGIN, PASSWORD, FIRST_NAME, LAST_NAME, MIDDLE_NAME)
-VALUES('user_1', 'melandr3', 'à¢†≠Æ¢', 'à¢†≠', 'à¢†≠Æ¢®Á');
+VALUES('user_1', 'melandr3', '–ò–≤–∞–Ω–æ–≤', '–ò–≤–∞–Ω', '–ò–≤–∞–Ω–æ–≤–∏—á');
 
 INSERT INTO PUBLIC.USERS
 (LOGIN, PASSWORD, FIRST_NAME, LAST_NAME, MIDDLE_NAME)
-VALUES('user_2', '12345', 'ë•¨•≠Æ¢', 'ë•‡£•©', 'ë‚•Ø†≠Æ¢®Á');
+VALUES('user_2', '12345', '–°–µ–º–µ–Ω–æ–≤', '–°–µ—Ä–≥–µ–π', '–°—Ç–µ–ø–∞–Ω–æ–≤–∏—á');
 
 INSERT INTO PUBLIC.USERS
 (LOGIN, PASSWORD, FIRST_NAME, LAST_NAME, MIDDLE_NAME)
-VALUES('user_3', 'abcde', 'è®¨•≠Æ¢', 'Ä´•™·•©', 'ë•‡£••¢®Á');
+VALUES('user_3', 'abcde', '–ü–∏–º–µ–Ω–æ–≤', '–ê–ª–µ–∫—Å–µ–π', '–°–µ—Ä–≥–µ–µ–≤–∏—á');
