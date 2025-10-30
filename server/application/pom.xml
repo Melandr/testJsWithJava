@@ -9,9 +9,10 @@
 	<artifactId>server-application</artifactId>
 	<name>server.app</name>
 <properties>
-    <java.version>21</java.version> <!-- или 21 -->
+    <java.version>21</java.version> 
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
+    <lombok.version>1.18.42</lombok.version>
 </properties>
 	<dependencies>
 		<dependency>

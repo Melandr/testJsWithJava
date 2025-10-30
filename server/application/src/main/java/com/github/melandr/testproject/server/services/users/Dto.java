@@ -5,31 +5,33 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 class Dto {
 
 	@AllArgsConstructor
-    static class UsersResponse {
-        @JsonProperty
-        private final List<Integer> users;
-    }
-	
+	static class UsersResponse {
+		@JsonProperty
+		private final List<Integer> users;
+	}
+
 	@AllArgsConstructor
+	@Getter
 	static class User {
 		@JsonProperty
-	    private final String login;
+		private final String login;
 		@JsonProperty
-	    private final String firstName;
+		private final String firstName;
 		@JsonProperty
-	    private final String lastName;
+		private final String lastName;
 		@JsonProperty
-	    private final String middleName;
+		private final String middleName;
 		@JsonProperty
-	    private final String phone;
+		private final String phone;
 		@JsonProperty
-	    private final String email;
+		private final String email;
 		@JsonProperty
-	    private final String photo;
+		private final String photo;
 	}
 
 }
