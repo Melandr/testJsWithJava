@@ -6,7 +6,7 @@
     "scripts": {
         "start": "webpack serve --mode development --open",
         "build": "webpack --mode production --config webpack.config.js",
-        "java_compile": "cd ./../server && mvn -T 1C clean install",
+        "java_compile": "cd ./../server && mvn -T 16 clean install",
         "java_start": "cd ./../server/application && run.bat"
     },
     "keywords": [
